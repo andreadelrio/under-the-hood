@@ -23,7 +23,7 @@ module.exports = React.createClass({
 		};
 		return (
 			<g key={index}>	
-				<text {...textAttr}>
+				<text {...textAttr} onClick={this.props.updateDestination.bind(null,star)}>
 					{star.name}	
 				</text>
 				<circle {...circleAttr}></circle>

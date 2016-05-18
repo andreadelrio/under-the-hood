@@ -14,7 +14,10 @@ module.exports = React.createClass({
     var ship = this.state.ship;
     return (
       <div>
-        <StarChart starData={starData} ship={ship} />
+        <StarChart 
+          starData={starData}
+          ship={ship} 
+          updateDestination={this.updateDestination} />
         <HelmControl ship={ship} updateShipInfo={this.updateShipInfo}/>
       </div>
     );
@@ -23,6 +26,12 @@ module.exports = React.createClass({
   updateShipInfo: function(info) {
     var ship = this.state.ship;
     ship.info = info;
+    this.setState({ship: ship});
+  },
+
+  updateDestination: function(newDestination) {
+    var ship = this.state.ship;
+    ship.destination = newDestination;
     this.setState({ship: ship});
   },
 });
