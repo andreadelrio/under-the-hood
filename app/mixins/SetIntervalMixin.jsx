@@ -1,18 +1,18 @@
 module.exports = {
-	componentWillMount: function() {
-		this.intervals = [];
-	},
+  componentWillMount: function() {
+    this.intervals = [];
+  },
 
-	componentWillUnmount: function() {
-		this.clearIntervals();
-	},
+  componentWillUnmount: function() {
+    this.clearIntervals();
+  },
 
-	setInterval: function() {
-		this.intervals.push(setInterval.apply(null, arguments));
-	},
+  setInterval: function() {
+    this.intervals.push(setInterval.apply(null, arguments));
+  },
 
-	clearIntervals: function() {
-		this.intervals.forEach(clearInterval);
-		this.intervals = [];
-	}
+  clearIntervals: function() {
+    this.intervals.forEach(clearInterval);
+    this.intervals = [];
+  }
 };
