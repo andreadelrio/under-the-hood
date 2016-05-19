@@ -3,8 +3,11 @@ var starData = require('../data/starData');
 var StarChart = require('./StarChart.jsx');
 var Ship = require('../data/Ship.js');
 var HelmControl = require('./HelmControl.jsx');
+var nav = require('../utilities/starshipNavigation.js');
+var SetIntervalMixin = require('../mixins/SetIntervalMixin.jsx');
 
 module.exports = React.createClass({
+  mixins: [SetIntervalMixin],
   
   getInitialState: function() {
     return { ship: new Ship() };
@@ -18,7 +21,7 @@ module.exports = React.createClass({
           starData={starData}
           ship={ship} 
           updateDestination={this.updateDestination} />
-        <HelmControl ship={ship} updateShipInfo={this.updateShipInfo}/>
+        <HelmControl ship={ship} updateDestination={this.updateDestination} updateShipInfo={this.updateShipInfo} updateSpeed={this.updateSpeed} engageWarpDrive={this.engageWarpDrive} />
       </div>
     );
   },
@@ -34,4 +37,25 @@ module.exports = React.createClass({
     ship.destination = newDestination;
     this.setState({ship: ship});
   },
+
+  updateSpeed: function(newSpeed) {
+    var ship = this.state.ship;
+    ship.speed = newSpeed;
+    this.setState({ship: ship});
+  },
+
+  engageWarpDrive: function() {
+    this.clearIntervals();
+    this.setInterval(this.updateShipPosition);
+  },
+
+  updateShipPosition: function() {
+    var ship = this.state.ship;
+    if (nav.destinationReached(ship)) {
+      this.clearIntervals();
+    } else {
+      ship.position = nav.nextPositionToDestination(ship);
+      this.setState({ship: ship})
+    }
+  }
 });
