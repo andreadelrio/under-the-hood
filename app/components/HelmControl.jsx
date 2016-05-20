@@ -2,6 +2,7 @@ var React = require('react');
 var ShipInfo = require('./ShipInfo.jsx');
 var NavigationDashboard = require('./NavigationDashboard.jsx');
 var WarpDriveControls = require('./WarpDriveControls.jsx');
+var CourseControl = require('./CourseControl.jsx');
 
 module.exports = React.createClass({
   render: function() {
@@ -14,6 +15,9 @@ module.exports = React.createClass({
         </div>
         <ShipInfo info={ship.info} updateShipInfo={props.updateShipInfo} />
         <NavigationDashboard ship={ship} />
+        <CourseControl 
+          starData={props.starData}
+          updateDestination = {props.updateDestination} />
         <WarpDriveControls 
           speed={ship.speed} 
           updateSpeed={props.updateSpeed} 

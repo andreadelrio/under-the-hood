@@ -21,7 +21,13 @@ module.exports = React.createClass({
           starData={starData}
           ship={ship} 
           updateDestination={this.updateDestination} />
-        <HelmControl ship={ship} updateDestination={this.updateDestination} updateShipInfo={this.updateShipInfo} updateSpeed={this.updateSpeed} engageWarpDrive={this.engageWarpDrive} />
+        <HelmControl 
+          starData={starData}
+          ship={ship}
+          updateDestination={this.updateDestination}
+          updateShipInfo={this.updateShipInfo}
+          updateSpeed={this.updateSpeed}
+          engageWarpDrive={this.engageWarpDrive} />
       </div>
     );
   },
